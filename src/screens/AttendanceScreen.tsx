@@ -42,13 +42,13 @@ export const AttendanceScreen: React.FC = () => {
 
   return (
     <div
-      className={`flex-1 flex flex-col transition-colors duration-300 pb-24 ${
+      className={`flex-1 flex flex-col transition-colors duration-300 tab-page-pb ${
         isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
       }`}
     >
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           isDark ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -75,14 +75,14 @@ export const AttendanceScreen: React.FC = () => {
 
       {/* Demo Mode Notice */}
       {isDemoMode && (
-        <div className="mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
+        <div className="mx-4 sm:mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
           <Info size={15} className="shrink-0" />
           <span>Showing sample attendance records and register (Demo Mode).</span>
         </div>
       )}
 
       {/* Main Content */}
-      <main className="px-5 pt-4 space-y-4">
+      <main className="px-4 sm:px-5 pt-4 space-y-4">
         {isLoadingData ? (
           <div className="py-16 text-center">
             <div className="w-8 h-8 border-3 border-[#FF7A00] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
@@ -160,7 +160,7 @@ export const AttendanceScreen: React.FC = () => {
 
               {/* Target Threshold Configurator bar */}
               <div
-                className={`mt-4 pt-3 border-t flex items-center justify-between text-xs ${
+                className={`mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2 text-xs ${
                   isDark ? 'border-[#222428]' : 'border-gray-100'
                 }`}
               >
@@ -168,7 +168,7 @@ export const AttendanceScreen: React.FC = () => {
                   <SlidersHorizontal size={13} className="text-[#FF7A00]" />
                   <span className="text-[11px] font-semibold">Min. Target:</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   {[65, 75, 80, 85].map((pct) => (
                     <button
                       key={pct}
@@ -282,12 +282,12 @@ export const AttendanceScreen: React.FC = () => {
                     </div>
 
                     {/* Classes delivered and Safe Bunk advice with right chevron */}
-                    <div className="flex items-center justify-between text-xs pt-0.5">
+                    <div className="flex flex-wrap items-center justify-between gap-1 text-xs pt-0.5">
                       <span className={`font-medium ${isDark ? 'text-[#8A8A8A]' : 'text-[#7A7570]'}`}>
                         {subject.attended} / {subject.delivered} Classes
                       </span>
 
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 shrink-0">
                         {displayPct >= targetPercentage ? (
                           <span className="text-[11px] font-bold text-emerald-500">
                             {safeBunks > 0 ? `Can miss ${safeBunks} class${safeBunks > 1 ? 'es' : ''}` : 'On track'}

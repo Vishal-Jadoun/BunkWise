@@ -284,7 +284,7 @@ export const SubjectDetailScreen: React.FC<SubjectDetailScreenProps> = ({ course
   // If subject was not found in attendanceData
   if (!subject) {
     return (
-      <div className={`min-h-screen flex flex-col items-center justify-center p-6 text-center ${
+      <div className={`flex-1 flex flex-col items-center justify-center p-6 text-center subpage-pb pt-safe-header ${
         isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
       }`}>
         <AlertTriangle size={48} className="text-[#FF7A00] mb-4" />
@@ -306,13 +306,13 @@ export const SubjectDetailScreen: React.FC<SubjectDetailScreenProps> = ({ course
 
   return (
     <div
-      className={`flex-1 flex flex-col transition-colors duration-300 pb-24 ${
+      className={`flex-1 flex flex-col transition-colors duration-300 subpage-pb ${
         isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
       }`}
     >
       {/* Top Sticky Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           isDark ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -343,7 +343,7 @@ export const SubjectDetailScreen: React.FC<SubjectDetailScreenProps> = ({ course
       </header>
 
       {/* Main Container */}
-      <main className="px-5 pt-4 space-y-4">
+      <main className="px-4 sm:px-5 pt-4 space-y-4">
         {/* Subject Hero Card */}
         <div
           className={`p-5 rounded-2xl border shadow-sm relative overflow-hidden ${
@@ -867,7 +867,7 @@ export const SubjectDetailScreen: React.FC<SubjectDetailScreenProps> = ({ course
 
                   {/* Status Legend */}
                   <div
-                    className={`mt-4 pt-3 border-t grid grid-cols-5 gap-1 text-center text-[9px] font-semibold ${
+                    className={`mt-4 pt-3 border-t flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-center text-[10px] font-semibold ${
                       isDark ? 'border-[#222428] text-gray-400' : 'border-gray-100 text-gray-600'
                     }`}
                   >

@@ -108,7 +108,7 @@ export const CircularDetailScreen: React.FC<CircularDetailScreenProps> = ({ circ
   if (!notice) {
     return (
       <div
-        className={`flex-1 flex flex-col items-center justify-center p-6 text-center ${
+        className={`flex-1 flex flex-col items-center justify-center p-6 text-center subpage-pb pt-safe-header ${
           isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
         }`}
       >
@@ -131,13 +131,13 @@ export const CircularDetailScreen: React.FC<CircularDetailScreenProps> = ({ circ
 
   return (
     <div
-      className={`flex-1 flex flex-col transition-colors duration-300 pb-28 min-h-screen ${
+      className={`flex-1 flex flex-col transition-colors duration-300 subpage-pb ${
         isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
       }`}
     >
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           isDark ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -166,7 +166,7 @@ export const CircularDetailScreen: React.FC<CircularDetailScreenProps> = ({ circ
       </header>
 
       {/* Main Content Article */}
-      <main className="px-5 pt-4 space-y-5 flex-1">
+      <main className="px-4 sm:px-5 pt-4 space-y-5 flex-1">
         {/* Meta badges: Category & Date */}
         <div className="flex items-center justify-between gap-2">
           <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#FF7A00]/15 text-[#FF7A00] uppercase tracking-wider">

@@ -74,20 +74,21 @@ export const DashboardScreen: React.FC = () => {
   };
 
   return (
-    <div className={`flex-1 flex flex-col transition-colors duration-300 pb-20 ${
+    <div className={`flex-1 flex flex-col transition-colors duration-300 tab-page-pb ${
       theme === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
       {/* Sticky Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
-          theme === 'dark' ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-2.5 sm:py-3.5 flex items-center justify-between backdrop-blur-md transition-colors border-b pt-safe-header ${
+          theme === 'dark' ? 'bg-[#0A0A0A]/90 border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-[#E8E8E8]'
         }`}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 mr-2">
           {/* Avatar button navigating to profile */}
           <button
             onClick={() => navigate('/profile')}
-            className="w-11 h-11 rounded-full border-2 border-[#FF7A00] overflow-hidden focus:outline-none hover:opacity-90 transition-opacity shadow-sm shrink-0 bg-[#FF7A00]/15 flex items-center justify-center"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#FF7A00] overflow-hidden focus:outline-none hover:opacity-90 transition-opacity shadow-sm shrink-0 bg-[#FF7A00]/15 flex items-center justify-center"
+            aria-label="View Student Profile"
           >
             {studentProfile.profilePhoto && !avatarError ? (
               <img
@@ -97,17 +98,17 @@ export const DashboardScreen: React.FC = () => {
                 onError={() => setAvatarError(true)}
               />
             ) : (
-              <span className="text-base font-bold text-[#FF7A00]">
+              <span className="text-sm sm:text-base font-bold text-[#FF7A00]">
                 {studentProfile.studentName?.charAt(0) || 'S'}
               </span>
             )}
           </button>
           <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
-              <span className={`block text-xs truncate ${theme === 'dark' ? 'text-[#A0A0A0]' : 'text-[#7A7570]'}`}>
+            <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 leading-none">
+              <span className={`text-[11px] sm:text-xs truncate ${theme === 'dark' ? 'text-[#A0A0A0]' : 'text-[#7A7570]'}`}>
                 Welcome back,
               </span>
-              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
+              <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded leading-none shrink-0 ${
                 isDemoMode
                   ? 'bg-amber-500/15 text-amber-500'
                   : 'bg-emerald-500/15 text-emerald-500'
@@ -115,24 +116,25 @@ export const DashboardScreen: React.FC = () => {
                 {isDemoMode ? 'Demo Mode' : 'Chitkara Live'}
               </span>
             </div>
-            <span className="block text-base font-bold leading-tight truncate">
+            <span className="block text-sm sm:text-base font-bold leading-tight truncate mt-0.5">
               {studentProfile.firstName || 'Student'}
             </span>
           </div>
         </div>
 
         {/* Action icons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {!isDemoMode && (
             <button
               onClick={handleRefresh}
               disabled={isRefreshing || isLoadingData}
-              className={`w-9 h-9 rounded-full flex items-center justify-center border transition-colors ${
+              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-full flex items-center justify-center border transition-colors shrink-0 focus:outline-none ${
                 theme === 'dark'
                   ? 'bg-[#151718] border-[#2A2A2A] text-gray-300 hover:text-white'
                   : 'bg-white border-[#E8E8E8] text-gray-600 hover:text-black'
               }`}
               title="Refresh University Data"
+              aria-label="Refresh University Data"
             >
               <RefreshCw size={15} className={isRefreshing || isLoadingData ? 'animate-spin' : ''} />
             </button>
@@ -140,24 +142,26 @@ export const DashboardScreen: React.FC = () => {
 
           <button
             onClick={() => setShowSearchModal(true)}
-            className={`w-9 h-9 rounded-full flex items-center justify-center border transition-colors ${
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-full flex items-center justify-center border transition-colors shrink-0 focus:outline-none ${
               theme === 'dark'
                 ? 'bg-[#151718] border-[#2A2A2A] text-[#FF9D4D] hover:bg-[#202425]'
                 : 'bg-white border-[#E8E8E8] text-[#FF7A00] hover:bg-gray-50'
             }`}
             title="Search Timetable"
+            aria-label="Search Timetable"
           >
             <SearchIcon size={17} color="currentColor" />
           </button>
 
           <button
             onClick={() => setShowFeedbackModal(true)}
-            className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-full flex items-center justify-center transition-colors shrink-0 focus:outline-none ${
               theme === 'dark'
                 ? 'bg-[#FF7A00]/15 text-[#FF9D4D] hover:bg-[#FF7A00]/25'
                 : 'bg-[#FFF7ED] text-[#FF7A00] hover:bg-[#FFEDD5]'
             }`}
             title="Feedback & Settings"
+            aria-label="Feedback and Settings"
           >
             <FeedbackIcon size={17} color="currentColor" />
           </button>
@@ -166,37 +170,37 @@ export const DashboardScreen: React.FC = () => {
 
       {/* Sync Warning or Loading Banner */}
       {dataError && (
-        <div className="mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
+        <div className="mx-4 sm:mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
           <AlertTriangle size={15} className="shrink-0" />
-          <span>{dataError}</span>
+          <span className="min-w-0 break-words">{dataError}</span>
         </div>
       )}
 
       {isLoadingData && (
-        <div className="mx-5 mt-3 p-2.5 rounded-xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 text-[#FF7A00] text-xs flex items-center gap-2">
+        <div className="mx-4 sm:mx-5 mt-3 p-2.5 rounded-xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 text-[#FF7A00] text-xs flex items-center gap-2">
           <div className="w-3.5 h-3.5 border-2 border-[#FF7A00] border-t-transparent rounded-full animate-spin shrink-0" />
-          <span>Synchronizing student records with Chitkara University ERP...</span>
+          <span className="min-w-0 truncate">Synchronizing student records with Chitkara University ERP...</span>
         </div>
       )}
 
       {/* Main Content Area */}
-      <main className="px-5 pt-3 space-y-4">
+      <main className="px-4 sm:px-5 pt-3 space-y-4">
         {/* Today's Schedule Card */}
         <div
           onClick={() => navigate('/timetable')}
-          className={`p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all shadow-sm ${
+          className={`p-3.5 sm:p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all shadow-sm ${
             theme === 'dark' ? 'bg-[#141517] border-[#222428]' : 'bg-white border-[#E8E8E8]'
           }`}
         >
           {/* Card Title Bar */}
-          <div className="flex items-center justify-between mb-3.5">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-[#FF7A00]">Today's Schedule</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-[#FF7A00]/10 text-[#FF7A00] font-medium">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-sm font-semibold text-[#FF7A00] truncate">Today's Schedule</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-md bg-[#FF7A00]/10 text-[#FF7A00] font-medium shrink-0">
                 {activeDayName}
               </span>
             </div>
-            <div className={`flex items-center gap-1.5 text-xs ${
+            <div className={`flex items-center gap-1.5 text-xs shrink-0 ${
               theme === 'dark' ? 'text-[#8A8A8A]' : 'text-[#7A7570]'
             }`}>
               <span>{dateStr}</span>
@@ -218,7 +222,7 @@ export const DashboardScreen: React.FC = () => {
                 return (
                   <div key={idx} className="flex items-center gap-3 relative">
                     {/* Indicator Column */}
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center shrink-0">
                       <div
                         className={`w-3.5 h-3.5 rounded-full border-2 transition-all ${
                           isCurrent
@@ -262,12 +266,12 @@ export const DashboardScreen: React.FC = () => {
           )}
         </div>
 
-        {/* 1:1 Metric Cards Grid */}
-        <div className="grid grid-cols-2 gap-3.5">
+        {/* Responsive Metric Cards Grid (1 column on <370px, 2 columns on >=370px) */}
+        <div className="grid grid-cols-1 min-[370px]:grid-cols-2 gap-3 sm:gap-3.5">
           {/* Attendance Card */}
           <div
             onClick={() => navigate('/attendance')}
-            className={`aspect-square p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all flex flex-col justify-between shadow-sm ${
+            className={`min-[370px]:aspect-square min-h-[148px] p-3.5 sm:p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all flex flex-col justify-between shadow-sm ${
               theme === 'dark' ? 'bg-[#141517] border-[#222428]' : 'bg-white border-[#E8E8E8]'
             }`}
           >
@@ -281,8 +285,8 @@ export const DashboardScreen: React.FC = () => {
             </div>
 
             {/* Circular Ring & Percentage */}
-            <div className="flex items-center justify-center my-auto relative">
-              <svg className="w-20 h-20 transform -rotate-90">
+            <div className="flex items-center justify-center my-auto py-2 relative">
+              <svg className="w-18 h-18 sm:w-20 sm:h-20 transform -rotate-90">
                 <circle
                   cx="40"
                   cy="40"
@@ -326,7 +330,7 @@ export const DashboardScreen: React.FC = () => {
           {/* Circulars / Notice Card */}
           <div
             onClick={() => navigate('/circulars')}
-            className={`aspect-square p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all flex flex-col justify-between shadow-sm ${
+            className={`min-[370px]:aspect-square min-h-[148px] p-3.5 sm:p-4 rounded-2xl border cursor-pointer hover:border-[#FF7A00]/60 transition-all flex flex-col justify-between shadow-sm ${
               theme === 'dark' ? 'bg-[#141517] border-[#222428]' : 'bg-white border-[#E8E8E8]'
             }`}
           >

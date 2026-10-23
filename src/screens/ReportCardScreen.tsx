@@ -277,12 +277,12 @@ export const ReportCardScreen: React.FC = () => {
   const currentSem = semesters.find(s => s.isCurrent) || semesters[semesters.length - 1];
 
   return (
-    <div className={`flex-1 flex flex-col transition-colors duration-300 pb-32 ${
+    <div className={`flex-1 flex flex-col transition-colors duration-300 subpage-pb ${
       theme === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           theme === 'dark' ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -305,14 +305,14 @@ export const ReportCardScreen: React.FC = () => {
 
       {/* Demo Mode Disclaimer */}
       {isDemoMode && (
-        <div className="mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
+        <div className="mx-4 sm:mx-5 mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs flex items-center gap-2">
           <Info size={15} className="shrink-0" />
           <span>Showing sample grade data for preview (Demo Mode).</span>
         </div>
       )}
 
       {/* Main Content */}
-      <main className="px-5 pt-4 space-y-4">
+      <main className="px-4 sm:px-5 pt-4 space-y-4">
         {isLoadingData ? (
           <div className="py-16 text-center">
             <div className="w-8 h-8 border-3 border-[#FF7A00] border-t-transparent rounded-full animate-spin mx-auto mb-3" />

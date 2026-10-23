@@ -81,12 +81,12 @@ export const PlusScreen: React.FC = () => {
   ];
 
   return (
-    <div className={`flex-1 flex flex-col transition-colors duration-300 pb-20 ${
+    <div className={`flex-1 flex flex-col transition-colors duration-300 subpage-pb ${
       isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           isDark ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -106,7 +106,7 @@ export const PlusScreen: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="px-5 pt-4 space-y-4">
+      <main className="px-4 sm:px-5 pt-4 space-y-4">
         {/* Hero Card */}
         <div className="p-5 rounded-2xl bg-gradient-to-r from-[#FC5D32] to-[#FD943A] text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10">

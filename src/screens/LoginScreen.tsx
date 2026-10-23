@@ -99,7 +99,7 @@ export const LoginScreen: React.FC = () => {
   };
 
   return (
-    <div className={`flex-1 flex flex-col justify-between p-6 max-w-sm mx-auto w-full transition-colors duration-300 ${
+    <div className={`flex-1 flex flex-col justify-between p-4 sm:p-6 max-w-sm mx-auto w-full transition-colors duration-300 pt-safe-header pb-[calc(1.5rem+var(--sab))] ${
       theme === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
       {/* Top Header */}

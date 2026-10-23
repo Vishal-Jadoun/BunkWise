@@ -237,60 +237,73 @@ export const CircularsScreen: React.FC = () => {
   };
 
   return (
-    <div className={`flex-1 flex flex-col transition-colors duration-300 pb-28 ${
+    <div className={`flex-1 flex flex-col transition-colors duration-300 tab-page-pb ${
       isDark ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
-      {/* Top Header */}
+      {/* Top Responsive Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
-          isDark ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-2.5 sm:py-3.5 backdrop-blur-md transition-colors border-b pt-safe-header ${
+          isDark ? 'bg-[#0A0A0A]/90 border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-[#E8E8E8]'
         }`}
       >
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate('/')}
-            className="p-1 -ml-1 rounded-full hover:bg-white/10"
-            aria-label="Go back"
-          >
-            <ArrowLeft size={20} />
-          </button>
-          <h1 className="text-xl font-bold tracking-tight">Circulars</h1>
-          {unreadCount > 0 && (
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FF7A00] text-white font-bold">
-              {unreadCount} new
-            </span>
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          {unreadCount > 0 && (
+        <div className="flex flex-col min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between gap-2 sm:gap-3">
+          {/* First Row: Back Button + Title + Unread Count Badge */}
+          <div className="flex items-center justify-between min-[420px]:justify-start gap-2.5 min-w-0">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <button
+                onClick={() => navigate('/')}
+                className="w-11 h-11 -ml-2 rounded-xl hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors focus:outline-none"
+                aria-label="Go back"
+              >
+                <ArrowLeft size={20} />
+              </button>
+              <h1 className="text-lg sm:text-xl font-bold tracking-tight truncate">Circulars</h1>
+              {unreadCount > 0 && (
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FF7A00] text-white font-bold shrink-0">
+                  {unreadCount} new
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Second Row on narrow screens / Right actions on larger screens */}
+          <div className="flex items-center gap-2 w-full min-[420px]:w-auto justify-end">
+            {unreadCount > 0 && (
+              <button
+                onClick={handleMarkAllRead}
+                className={`flex-1 min-[420px]:flex-initial min-h-[40px] px-3.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center justify-center transition-colors focus:outline-none ${
+                  isDark
+                    ? 'border-[#2A2A2A] text-gray-200 hover:bg-white/5 active:bg-white/10'
+                    : 'border-gray-200 text-gray-700 hover:bg-gray-100 active:bg-gray-200'
+                }`}
+                title="Mark all circulars as read"
+              >
+                <span>Mark all read</span>
+              </button>
+            )}
+
             <button
-              onClick={handleMarkAllRead}
-              className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
-                isDark ? 'border-[#2A2A2A] text-gray-300 hover:bg-white/5' : 'border-gray-200 text-gray-600 hover:bg-gray-100'
+              onClick={() => setShowSearch(!showSearch)}
+              className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors shrink-0 focus:outline-none ${
+                showSearch
+                  ? 'bg-[#FF7A00]/15 text-[#FF7A00]'
+                  : isDark ? 'hover:bg-white/10 text-gray-300' : 'hover:bg-gray-200 text-gray-600'
               }`}
-              title="Mark all circulars as read"
+              aria-label="Toggle search"
             >
-              Mark all read
+              <Search size={18} />
             </button>
-          )}
-          <button
-            onClick={() => setShowSearch(!showSearch)}
-            className={`p-2 rounded-full transition-colors ${
-              showSearch ? 'bg-[#FF7A00]/15 text-[#FF7A00]' : 'hover:bg-white/10'
-            }`}
-            aria-label="Toggle search"
-          >
-            <Search size={18} />
-          </button>
-          <div className="w-8 h-8 rounded-full bg-[#FF7A00]/15 text-[#FF7A00] flex items-center justify-center">
-            <CampaignIcon size={18} color="currentColor" />
+
+            <div className="w-11 h-11 rounded-xl bg-[#FF7A00]/15 text-[#FF7A00] flex items-center justify-center shrink-0">
+              <CampaignIcon size={20} color="currentColor" />
+            </div>
           </div>
         </div>
       </header>
 
       {/* Search Bar */}
       {showSearch && (
-        <div className="px-5 pt-3 pb-1">
+        <div className="px-4 sm:px-5 pt-3 pb-1">
           <div className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl border transition-colors ${
             isDark ? 'bg-[#141517] border-[#222428] focus-within:border-[#FF7A00]/50' : 'bg-white border-[#E8E8E8] focus-within:border-[#FF7A00]/50'
           }`}>
@@ -316,7 +329,7 @@ export const CircularsScreen: React.FC = () => {
       )}
 
       {/* Filter Chips Bar */}
-      <div className="px-5 pt-3 pb-1 flex gap-2 overflow-x-auto no-scrollbar">
+      <div className="px-4 sm:px-5 pt-2.5 pb-1 flex gap-2 overflow-x-auto no-scrollbar">
         {filters.map(f => {
           const isFilterActive = filter === f;
           const count = f === 'Saved' ? savedIds.length : null;
@@ -325,7 +338,7 @@ export const CircularsScreen: React.FC = () => {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 isFilterActive
                   ? 'bg-[#FF7A00] text-white shadow-sm shadow-[#FF7A00]/20'
                   : isDark
@@ -348,7 +361,7 @@ export const CircularsScreen: React.FC = () => {
       </div>
 
       {/* Main Notice List */}
-      <main className="px-5 pt-3 space-y-5">
+      <main className="px-4 sm:px-5 pt-3 space-y-4">
         {searchQuery && (
           <p className={`text-[11px] font-medium ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
             {filteredCirculars.length} result{filteredCirculars.length !== 1 ? 's' : ''} for "{searchQuery}"

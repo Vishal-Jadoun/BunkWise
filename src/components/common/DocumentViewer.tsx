@@ -108,7 +108,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex flex-col animate-fadeIn" style={{ backgroundColor: isDark ? '#0A0A0A' : '#F0F0F0' }}>
       {/* Top toolbar */}
-      <div className={`flex items-center justify-between px-4 py-3 border-b ${bg} ${borderColor}`}>
+      <div className={`flex items-center justify-between px-4 py-3 border-b pt-safe-header ${bg} ${borderColor}`}>
         <div className="flex items-center gap-3 min-w-0">
           <button
             onClick={onClose}
@@ -251,7 +251,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
       {/* Bottom toolbar for PDF navigation */}
       {fileType === 'pdf' && numPages > 0 && !error && (
-        <div className={`flex items-center justify-between px-4 py-2.5 border-t ${bg} ${borderColor}`}>
+        <div className={`flex items-center justify-between px-4 py-2.5 pb-[calc(0.625rem+var(--sab))] border-t ${bg} ${borderColor}`}>
           {/* Page navigation */}
           <div className="flex items-center gap-2">
             <button

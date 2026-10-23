@@ -101,7 +101,7 @@ export const BunkPlannerModal: React.FC<BunkPlannerModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
       <div
-        className={`w-full max-w-lg rounded-t-3xl sm:rounded-2xl p-6 shadow-2xl transition-all max-h-[92vh] overflow-y-auto ${
+        className={`w-full max-w-lg rounded-t-3xl sm:rounded-2xl p-4 sm:p-6 pb-[calc(1.5rem+var(--sab))] sm:pb-6 shadow-2xl transition-all max-h-[min(92vh,92dvh)] overflow-y-auto ${
           isDark ? 'bg-[#141517] border border-[#222428] text-white' : 'bg-white border border-gray-200 text-black'
         }`}
       >

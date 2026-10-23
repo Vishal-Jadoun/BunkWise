@@ -33,12 +33,12 @@ export const LeaveScreen: React.FC = () => {
   };
 
   return (
-    <div className={`flex-1 flex flex-col transition-colors duration-300 pb-20 ${
+    <div className={`flex-1 flex flex-col transition-colors duration-300 subpage-pb ${
       theme === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F8F7F4] text-[#1E1A1D]'
     }`}>
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-30 px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors ${
+        className={`sticky top-0 z-30 px-4 sm:px-5 py-3.5 flex items-center justify-between backdrop-blur-md transition-colors pt-safe-header ${
           theme === 'dark' ? 'bg-[#0A0A0A]/90 border-b border-[#1E1E1E]' : 'bg-[#F8F7F4]/90 border-b border-[#E8E8E8]'
         }`}
       >
@@ -61,7 +61,7 @@ export const LeaveScreen: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="px-5 pt-4 space-y-4">
+      <main className="px-4 sm:px-5 pt-4 space-y-4">
         {/* Leave Categories / Balances */}
         <div>
           <h2 className="text-xs font-bold uppercase tracking-wider opacity-70 mb-2.5">
@@ -124,7 +124,7 @@ export const LeaveScreen: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <form
             onSubmit={handleApply}
-            className={`w-full max-w-sm p-6 rounded-2xl shadow-2xl transition-colors ${
+            className={`w-full max-w-sm max-h-[min(90vh,90dvh)] overflow-y-auto p-5 sm:p-6 rounded-2xl shadow-2xl transition-colors ${
               theme === 'dark' ? 'bg-[#1E1E1E] border border-[#2A2A2A]' : 'bg-white border border-gray-100'
             }`}
           >
