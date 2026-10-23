@@ -75,6 +75,18 @@ function schoolPadLocalProxy(): Plugin {
           // Security: Enforce strict hostname allowlist to prevent SSRF and open proxy abuse
           try {
             const parsedTarget = new URL(targetUrl);
+            if (parsedTarget.protocol !== 'https:' && parsedTarget.protocol !== 'http:') {
+              res.statusCode = 400;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Only http and https protocols are supported' }));
+              return;
+            }
+            if (parsedTarget.port && parsedTarget.port !== '443' && parsedTarget.port !== '80') {
+              res.statusCode = 403;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Non-standard port rejected' }));
+              return;
+            }
             const host = parsedTarget.hostname.toLowerCase();
             const isPermitted =
               host === 'cuiet.codebrigade.in' ||
@@ -149,6 +161,8 @@ function schoolPadLocalProxy(): Plugin {
               res.setHeader('Access-Control-Allow-Origin', '*');
               res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
               res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Warmup-Url, X-Warmup-Body');
+              res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+              res.setHeader('Pragma', 'no-cache');
 
               const encoding = proxyRes.headers['content-encoding'];
               let stream: NodeJS.ReadableStream = proxyRes;

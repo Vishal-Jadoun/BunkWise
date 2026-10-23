@@ -58,6 +58,12 @@ export default async function handler(req, res) {
   // Security: Enforce strict hostname allowlist to prevent SSRF and open proxy abuse
   try {
     const parsedTarget = new URL(targetUrl);
+    if (parsedTarget.protocol !== 'https:' && parsedTarget.protocol !== 'http:') {
+      return res.status(400).json({ error: 'Only http and https protocols are supported' });
+    }
+    if (parsedTarget.port && parsedTarget.port !== '443' && parsedTarget.port !== '80') {
+      return res.status(403).json({ error: 'Non-standard destination port rejected' });
+    }
     const host = parsedTarget.hostname.toLowerCase();
     const isPermitted =
       host === 'cuiet.codebrigade.in' ||
@@ -121,6 +127,8 @@ export default async function handler(req, res) {
     (proxyRes) => {
       res.statusCode = proxyRes.statusCode || 200;
       res.setHeader('Content-Type', proxyRes.headers['content-type'] || 'application/json; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      res.setHeader('Pragma', 'no-cache');
 
       const encoding = proxyRes.headers['content-encoding'];
       let stream = proxyRes;
